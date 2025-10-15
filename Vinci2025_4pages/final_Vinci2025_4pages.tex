@@ -1,0 +1,275 @@
+% !TeX program = pdflatex
+\documentclass[sigconf,nonacm]{acmart}
+\settopmatter{printacmref=false}
+\pagestyle{plain}
+
+%-------------
+% Packages
+%-------------
+\usepackage{comment}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{balance}
+\usepackage[utf8]{inputenc} % ensure UTF-8 symbols handled safely
+\bibliographystyle{ACM-Reference-Format}
+%-------------
+% Anonymization toggle
+%-------------
+\newif\ifanonymous
+\anonymousfalse% 切换为 \anonymoustrue 以生成匿名版本
+
+% 若开启匿名模式，重写作者信息并隐藏署名
+\ifanonymous
+  \renewcommand{\shortauthors}{Anonymous}
+  \author{Anonymous Author(s)}
+\fi
+
+%-------------
+% Title & Authors
+%-------------
+\title{From Code to Camera: The Making and Meaning of Prosomoíosi (Simulation), an AI Documentary Film}
+
+\ifanonymous
+  % --- ANONYMOUS VERSION ---
+  \author{Anonymous Author(s)}
+  \affiliation{%
+    \institution{Anonymous Institution}
+    \city{Anonymous City}
+    \country{Anonymous Country}
+  }
+  \email{anonymous@email.address}
+  \renewcommand{\shortauthors}{Anonymous}
+
+\else
+
+\author{Shuai Liu}
+\affiliation{%
+  \institution{Academy of Media Arts Cologne (KHM)}
+  \city{Cologne}
+  \country{Germany}}
+\email{shuai.liu@khm.de}
+
+\author{Mar Canet Sola}
+\orcid{0000-0001-5986-3239}
+\affiliation{%
+  \institution{BFM, Tallinn University, Estonia}
+  \city{}
+  \country{}}
+\affiliation{%
+  \institution{Academy of Media Art Cologne(KHM), Germany}
+  \city{}
+  \country{}}
+\email{mar.canet@gmail.com}
+
+\renewcommand{\shortauthors}{L. Shuai, M. Canet Sola}
+\fi
+
+%-------------
+% Abstract
+%-------------
+\begin{abstract}
+% Prosomoíosi (Simulation) is a real-time audiovisual exploration of how successive modelling frameworks overwrite cultural memory. Grounded in media archaeology, the work introduces the concept of \emph{medium alignment}, arguing that ideas must be voiced through media whose operative logic remains visible. A live diffusion pipeline—combining TouchDesigner, StreamDiffusion, and ComfyUI Flux up-scaling—stages the algorithmic politics of selective remembrance and invites audiences to renegotiate authorship at the human–machine frontier.
+This paper examines the audiovisual artwork \emph{Prosomoíosi (Simulation)}, advancing the concept of \emph{medium alignment} to critique how successive simulation technologies overwrite cultural memory. Grounded in media-archaeological thinking, the study argues that concepts must be articulated through media whose operative logic remains visible, thereby transforming viewers from passive spectators into active witnesses of algorithmic decision-making. A transparent live diffusion pipeline serves as both method and message, enabling audiences to observe how text prompts, stochastic noise, and performer input co-evolve on screen. By tracing precedents from early interactive installations to contemporary AI-driven works, the paper positions Prosomoíosi within a lineage that challenges tool-centric spectacle and renegotiates authorship at the human-machine frontier. Medium alignment thus emerges as a transferable design heuristic for artists seeking to move beyond technological virtuosity toward works that explicitly reveal, rather than conceal, their underlying political dimensions.
+\end{abstract}
+
+%-------------
+% CCS Concepts & Keywords
+%-------------
+\begin{CCSXML}
+% dummy placeholder
+\end{CCSXML}
+\ccsdesc[500]{Applied computing~Media arts}
+\ccsdesc[300]{Computing methodologies~Artificial intelligence}
+
+\keywords{generative AI, medium alignment, real-time diffusion, text-to-video synthesis, StreamDiffusion, TouchDesigner, AI film, media archaeology, fiction documentary}
+
+% inserted to start the document body
+\begin{document}
+
+\begin{teaserfigure}
+    \centering
+    \includegraphics[width=1\linewidth]{pics Prosomoiosi 4pages short paper/band.jpg}
+    \caption{Screenshot of Prosomoíosi (Simulation), generated from Cultural Analytics's cover\cite{manovich_cultural_analytics_2020}}
+    \label{fig:enter-label}
+\end{teaserfigure}
+
+% \begin{teaserfigure}
+%     \centering
+%     \includegraphics[width=1\linewidth]{screenshot2.jpg}
+%     \caption{Screenshot of Prosomoíosi (Simulation)}
+%     \label{fig:enter-label}
+% \end{teaserfigure}
+
+%-------------
+% Title block
+%-------------
+\maketitle
+
+%-------------
+% 1. Introduction
+%-------------
+\section{Introduction}
+
+Over the past decade, generative artificial intelligence (AI) has rapidly transitioned from research laboratories to mainstream film production workflows. In 2024, the Academy of Motion Picture Arts and Sciences explicitly permitted films containing AI-generated footage to compete for Oscars—a symbolic milestone reflecting both Hollywood's recognition of this technological paradigm shift and a relaxation of traditional production standards. That same year saw the launch of the Runway AI Film Festival (New York and Los Angeles) and the RAIN Film Fest (Barcelona), signaling AI-based image creation's evolution from niche artistic practice to established ecosystem. The inaugural Asian AI Film Festival (HKUST AI Film Festival) in 2025 further confirmed this trend's global expansion and cultural diversification.
+
+Technically, breakthroughs in generative models for scriptwriting, storyboarding, image synthesis, and long-form video generation have created unprecedented opportunities for real-time iteration. Text-to-video models like Runway Gen-2\footnote{\url{http://runwayml.com}}, OpenAI's Sora\footnote{\url{https://openai.com/sora/}}, and Google's Veo\footnote{\url{https://deepmind.google/models/veo/}}\textemdash built on large-scale spatiotemporal diffusion frameworks\textemdash now produce controllable, high-definition output with narrative coherence. meanwhile, text-to-image models like Stable Diffusion\footnote{https://huggingface.co/CompVis/stable-diffusion-v1-4}, Flux\footnote{\url{https://huggingface.co/black-forest-labs/FLUX.1-dev}}, and Midjourney\footnote{\url{https://www.midjourney.com/}}, together with large language models (LLMs) for script development and world-building, are reshaping the traditional pre-production workflow. Researchers note that AI tools not only enhance production efficiency but also introduce a \emph{machine vision} cultural grammar that co-evolves with audience perception.
+
+Yet this technological progress reveals a critical contradiction: when artists adopt new media while retaining old conceptual frameworks—or vice versa—a misalignment emerges between medium and idea. The consequences typically manifest as:  
+\begin{enumerate}
+    \item The new technology being reduced to a mere \emph{accelerator}, unable to contribute meaningfully to the work's intent;
+    \item Conceptual depth being sacrificed to the tool's default paradigm, resulting in demonstrative or techno-virtuosic superficiality;
+    \item Audiences perceiving primarily a \emph{technological spectacle} rather than the work's thematic core, thereby diluting its artistic statement.
+\end{enumerate}
+
+% This article addresses the phenomenon of "medium/concept misalignment" by taking the AI video work Prosomoíosi (Simulation) as its central case study. The piece adopts "simulation" as its entry point and, through a series of investigations into the technical, historical, and cultural semantics of simulation, gradually formulates and explicates the notion of "medium alignment": the deliberate re-alignment of a work's conceptual agenda with the operational logic of the medium employed, so that the technical procedure becomes a perceptible part of expression rather than a concealed backstage. The work's technical architecture—in which StreamDiffusion\footnote{https://github.com/cumulo-autumn/StreamDiffusion} is invoked inside TouchDesigner\footnote{https://derivative.ca/} for real-time image generation, augmented by dynamic parameter curves and ComfyUI Flux-based tiled up-scaling—embodies this idea: the diffusion process is rendered visible and incorporated into the narrative, enabling audiences to perceive directly how algorithms shape the image. The paper contends that only under the premise of medium alignment can generative moving images transcend tool-oriented and techno-virtuosic tendencies to become a dynamic arena for renegotiating memory, history, and subjectivity.
+Generative AI is rapidly reshaping film and art production, yet conceptual thinking has not kept pace, widening the gap between medium and idea. Through the case study of \emph{Prosomoíosi (Simulation)}, we propose \emph{medium alignment}: aligning a project's theme with its medium's operative logic from inception, making the algorithmic pipeline a visible narrative layer rather than hidden infrastructure. This proposal echoes Baudrillard’s model-first simulation logic \cite{baudrillard_simulacra_1994}, Bolter and Grusin’s remediation paradigm \cite{bolter_remediation_1999}, and Manovich’s analysis of algorithmic storytelling \cite{manovich_language_2001}.
+\emph{Prosomoíosi} literalizes simulation: real-time images generated in TouchDesigner\footnote{\url{https://derivative.ca/}} via StreamDiffusion\footnote{\url{https://github.com/cumulo-autumn/StreamDiffusion}} (driven by keyframed parameters) are tiled and upscaled to 4K using ComfyUI and the Flux model. By exposing the diffusion process on-screen, the work lets viewers watch algorithms overwrite the image itself. We argue that such medium alignment enables generative video to transcend tool fetishism and techno-virtuosity, turning it into a dynamic arena where memory, history, and subjectivity can be renegotiated.
+\begin{figure*}
+    \centering
+    \includegraphics[width=1\linewidth]{pics Prosomoiosi 4pages short paper/compare.jpg}
+    \caption{Image quality comparison, left:previous work; right: this work}
+    \label{fig:enter-label}
+\end{figure*}
+\section{Reference Artworks}
+
+To contextualize our research, this section examines a selection of artworks that trace the evolution from early interactive systems to contemporary AI-driven critiques of perception. A foundational example is \textit{A\textendash Volve} (1994) by Christa Sommerer and Laurent Mignonneau \footnote{https://interface.ufg.ac.at/christa-laurent/}, a pioneering installation where visitors' drawings are instantiated as virtual creatures \cite{AVolve}. The work foregrounds themes of artificial life and embodied interaction, positioning the human as a direct creator within a digital ecosystem. Decades later, this focus on perception and digital life has been radically reconfigured by deep learning. Rather than granting users direct creative agency, many contemporary artists use AI to interrogate the very process of seeing. For instance, Memo Akten's \footnote{https://www.memo.tv/} \textit{Learning to See} (2017) employs real-time neural networks to reveal how a model reconstructs reality through the biased filter of its training data, explicitly questioning the relationship between perception and truth \cite{LearningToSeeWeb,LearningToSeePaper}. A related, though aesthetically distinct, exploration is Scott Eaton's \textit{Entangled II} (2019), which uses a bespoke neural network to process abstract footage into morphing, quasi-human figures, examining the aesthetics of machine perception and the human tendency for pareidolia \cite{EntangledII}. Taking this critique of data's influence a step further, \textit{POSTcard Landscapes from Lanzarote} (2022) by Varvara \& Mar\footnote{http://var-mar.info} leverages a StyleGAN2 model trained on distinct datasets to generate two opposing visual realities of the same location: the tourist's view and the local's view \cite{Guljajeva2022}. By juxtaposing these AI-generated "gazes," the work offers a powerful commentary on how curated data not only reflects but actively shapes cultural identity and memory, echoing John Urry's concept of the "tourist gaze" \cite{Urry2002}. 
+
+This interrogation extends to works like Kevin Abosch's \textit{Am I} documentary \cite{patella2025artevivente}\footnote{\url{https://www.kevinabosch.com/}} and institutional critiques such as Nora Al-Badri's \textit{The Post-Truth Museum} (2021–23) \cite{Hicks2024GetReal}\footnote{\url{https://www.nora-al-badri.de/}}, which uses deepfakes to fabricate museum directors' speeches talking about decolonizing their museums. Recent works further explore AI's cultural implications: Paul Trillo's \footnote{https://paultrillo.com/} Ars Electronica Golden Nica-winning \textit{Washed Out “The Hardest Part”} (2024) demonstrates the potential of AI music videos with an impossible continuous traveling shot \cite{Trillo2024,Greene2024}. While Erin Robinson's \footnote{https://erinrobinson.xyz/} \textit{XXX Machina} (2025) and Martyna Marciniak's \footnote{https://www.martyna.digital/} \textit{Anatomy of Non-Fact. Chapter 1: AI Hyperrealism} (2025) interrogate AI's role in constructing desire and documentary truth, respectively \cite{Robinson2025,Starosta2025}. Together, these works—spanning interactive systems, institutional critique, and synthetic media—illustrate AI's evolution from celebratory tool to critical medium for examining how algorithms mediate.
+
+
+\begin{comment}
+\begin{description}
+  \item[\textbf{A\textendash Volve} (1994) by Christa Sommerer\, \& Laurent Mignonneau.] An interactive installation where visitors draw two-dimensional life-forms that are immediately instantiated as three-dimensional virtual creatures swimming inside a water basin. These entities compete, evolve, and respond to human touch, foregrounding artificial life and embodied interaction \cite{AVolve}.
+
+  \item[\textbf{Entangled II} (2019) by Scott Eaton.] A 4K vertical video that processes high-speed footage of paint dispersing in water through a bespoke neural network ("BODIES") to produce continuously morphing, quasi-human figures. The work examines pareidolia and the aesthetics of machine perception \cite{EntangledII}.
+
+  \item[\textbf{Learning to See} (2017 ) by Memo Akten.] An ongoing series employing real-time pix2pix networks to reveal how neural models reconstruct reality through the filter of prior data, thereby interrogating perception, bias, and truth. A detailed technical and conceptual discussion appears in Akten's SIGGRAPH 2019 paper \cite{LearningToSeeWeb,LearningToSeePaper}.
+
+  \item[\textbf{POSTcard Landscapes from Lanzarote} (2022 ) by Varvara \& Mar.] The artwork "POSTcard Landscapes from Lanzarote" by Varvara Guljajeva and Mar Canet is an AI-generated audiovisual piece exploring differing perspectives of tourists and locals regarding a specific place \cite{Guljajeva2022}. The artwork presents two distinct videos side by side, examining the relationship between tourism, memory, and local identity through two opposing synthetic realities created by AI using collected data. The visual material was generated with the StyleGAN2 algorithm, trained on found footage datasets from Flickr depicting Lanzarote, a tourist hotspot in the Canary Islands. The artists produced two separate videos representing touristic and local views of the island. This AI-driven synthesis highlights how tourist images shape and sometimes overshadow the genuine cultural identity of places, reflecting John Urry’s concept of the "tourist gaze,"\cite{Urry2002} where photographic reproduction eclipses authentic experiences. The latent-space interpolation technique transforms static image data into dynamic, fluid videos complemented by soundtracks from two local sound artists, enriching the critical and atmospheric dimensions of the piece. Ultimately, the project emphasizes the crucial role datasets play in AI, demonstrating how memory construction can be represented through synthetic processes powered by artificial intelligence.
+
+\end{description}
+\end{comment}
+\section{Case Study : Prosomoiosi (Simulation)}
+
+\subsection{Artwork Description}
+
+%Prosomoíosi (Simulation) is a video work created through a real-time generative pipeline that, through a media-archaeological lens, advances the notion of "medium alignment" to probe how successive technological regimes continually overwrite memory and identity. The work pursues two mutually reinforcing aims: (1) to unmask, through a stratified narrative of simulation logics, the quiet manner in which each new medium overprints cultural remembrance; and (2) to disclose the algorithmic selectivity and symbolic authority of AI-driven image synthesis by staging a reflexive demonstration built on a TouchDesigner–StreamDiffusion pipeline featuring real-time multiprompt editing and ComfyUI up-scaling with the flux-dev f16 model. By allowing text prompts, stochastic noise, and live performer input to co-evolve on the exhibition floor, the piece shifts image production from depiction to ontological negotiation, inviting audiences to rethink the future interplay of human creativity and machine simulation.
+
+Prosomoíosi (Simulation) is a real-time generative video work that advances "medium alignment" to probe how technological regimes overwrite memory and identity. The work aims to (1) reveal how new media overprint cultural memory and (2) expose AI synthesis's algorithmic selectivity through a reflexive TouchDesigner–StreamDiffusion pipeline with real-time editing and ComfyUI upscaling. By allowing text prompts, noise, and performer input to co-evolve, the piece shifts image production from depiction to ontological negotiation.
+
+Simulation here is not mere copying or representation; rather, it is a power-laden rewriting produced through the interplay of technology, archives, and algorithms. Wolfgang Ernst notes that archival temporality shapes memory even as it quietly edits the past \citep{Ernst_Archive}; Walter Benjamin anticipated the aura's erosion under mechanical reproduction \citep{Benjamin_WorkOfArt}, and Jean Baudrillard later warned of simulacra supplanting reality \cite{Baudrillard_Simulacra}. Charting a trajectory "from clay to code"—from sand tables and armillary spheres to deep learning and GANs—modeling technologies have evolved from cognitive tools to arbiters of truth: This "from code to camera" trajectory finds expression in Martyna Marciniak's \textit{Anatomy of Non-Fact, Chapter 1: AI Hyperrealism} (2025), which follows Baudrillard's "proving the real through the imaginary" by generating synthetic imagery that questions fact-fiction boundaries \cite{Marciniak2025ArsElectronica}\footnote{\url{https://calls.ars.electronica.art/2025/prix/winners/19504/}}, and Erin Robinson's \textit{XXX Machina} (2025), which uses algorithmic processes to create continuously evolving outputs that embrace computational unpredictability \cite{Robinson2025XXX}\footnote{\url{https://erinrobinson.xyz/artworks/xxx-machina}}.large networks such as GPT-4 and ESM-2 autonomously conjure worlds from latent space and even guide human decision-making, reshaping the human–reality relation. Within this landscape, video games have become the most pervasive simulation medium; by breaching the "fourth wall," they place players in a hybrid third space where procedural rhetoric lets symbolic capital and ideology permeate interaction, extending McLuhan's dictum that "the medium is the message" \cite{McLuhan_UnderstandingMedia} alongside Bourdieu's analysis of symbolic power \cite{Bourdieu_SymbolicPower}. Educational and political simulations—SimCity, PeaceMaker—as well as Lorenz-style chaotic systems further attest to simulation's profound influence on behaviour and cognition. Faced with the medium mutations of algorithmic culture, art must enact medium alignment, expanding AI alignment into a perceptual-symbolic calibration at the level of the medium itself; situated between Stiegler's "third memory" \cite{Stiegler_TechnicsTime1} and Yuk Hui's "cosmic technics," \cite{Hui_Cosmotechnics} this posture seeks to cultivate a future symbiosis among humans, machines, and media.
+
+
+
+\subsection{Production Workflow}
+The real-time generation pipeline of this project consists of four stages: material preparation $\rightarrow$ diffusion generation $\rightarrow$ high-resolution upscaling $\rightarrow$ post-production,' with each stage optimized for live performance.
+
+\paragraph{Material Preparation}
+% Source footage falls into two categories: (1) public-domain vintage film / documentary clips; (2) gameplay footage recorded from live demos. All materials are uniformly transcoded in Adobe Premiere Pro to 24 fps, H.264, with rough cuts completed in the same sequence to prepare for subsequent generation.
+% Using an RTX 4090 as the key hardware platform, and to reserve computation time for the diffusion model, the footage is first slowed down in Premiere Pro to 4 or 14 fps—i.e., 0.2$\times$ or 0.5$\times$ of the original frame rate (depending on the inference speed of the model selected later). The slowed video is then streamed in real time via software such as NDI or Spout (NDI is used in this project) to TouchDesigner for diffusion testing.
+Source footage includes public-domain vintage films and live gameplay recordings, uniformly transcoded to 24 fps H.264 in Adobe Premiere Pro. To optimize diffusion processing on RTX 4090 hardware, the footage is slowed to 4-14 fps (0.2×-0.5× speed) and streamed through NDI to TouchDesigner for real-time generation.
+
+\paragraph{Real-Time Diffusion Generation (TouchDesigner + StreamDiffusion)}
+Hardware platform: AMD Ryzen 9 7950X / NVIDIA RTX 4090 (24 GB VRAM).
+In TouchDesigner, the StreamDiffusion node developed by dotsimulate\footnote{https://dotsimulate.com/} is loaded. After configuring the project's dependencies, every video frame undergoes image-to-image (img2img) diffusion. Models such as Stable Diffusion XL, Stable Diffusion 1.5, and their LoRAs are switched dynamically to achieve desired artistic effects.
+StreamDiffusion parameters—Prompt, CFG Scale, Steps, Denoise, etc.—are bound to keyframe curves via the Animation COMP curve editor in TouchDesigner, allowing precise control over all generation parameters. Performers can pre-program or live-edit these curves to sculpt narrative rhythm, achieving smoother and more coherent results.
+The workflow also integrates ControlNet's HED (Holistically Nested Edge Detection) branch within TouchDesigner; by parameterizing the edge-strength weight, the diffusion process is further constrained to converge on scene geometry and spatial alignment.
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{pics Prosomoiosi 4pages short paper/TD detail.png}
+    \caption{Screen capture of the TouchDesigner workflow: red – Animation COMP–related modules; green – StreamDiffusion node; yellow – ControlNet}
+    \label{fig:enter-label}
+\end{figure}
+
+
+% In this Flux workflow for high-definition image generation, preprocessing and region-wise reconstruction form the core foundation. The overall design aims to ensure generation quality, adapt to different VRAM environments, enhance large-image handling, and improve detail expression.
+% First, the image is imported via a LoadImage node and uniformly resized to a standard size (e.g., 1024~$\times$~1024) with an ImageResizeKJ node, ensuring compatibility with downstream modules while controlling interpolation. Next, an UpscaleModelLoader node loads a super-resolution model (e.g., "4x NMKD-Siax 200k"), and the ImageUpscaleWithModel node performs a true 4$\times$ enlargement. This step not only increases resolution but also lays a high-dimensional foundation for subsequent generation and refinement, thereby enhancing overall texture and edge sharpness.
+\paragraph{High-Resolution Upscaling (ComfyUI Flux Workflow)}
+The Flux pipeline first loads each image, resizes it to 1024 × 1024 for VRAM-adaptive processing, then applies a 4× NMKD-Siax super-resolution pass; this tile-based routine balances memory, accommodates large canvases, and boosts texture and edge detail for later stages.
+
+
+% After upscaling, to alleviate VRAM pressure from high resolutions and enable multi-tile parallel generation, the system introduces a TTP (Tile-to-Patch)   \footnote{\url{https://github.com/TTPlanetPig/Comfyui_TTP_Toolset}}  slicing mechanism. Specifically, the \texttt{TTP\_Tile\_image\_size} node automatically calculates appropriate tile dimensions based on image size and grid count; the \texttt{TTP\_Image\_Tile\_Batch} node then divides the entire image into multiple small blocks and outputs the tile batch, positional data, original image size, and grid structure. Each tile is processed independently and encoded into latent space to fit the Flux model's generation workflow.
+% Once generation is complete, the \texttt{TTP\_Image\_Assy} node reassembles the tiles according to their positions and the original layout parameters, ultimately reconstructing a complete image with global structural continuity and rich detail. This mechanism effectively balances the trade-off between VRAM and resolution, achieving local generation with global consistency.
+
+To reduce VRAM load at high resolutions, we use the Tile-to-Patch (TTP) toolset\footnote{\url{https://github.com/TTPlanetPig/Comfyui_TTP_Toolset}}. TTP automatically sizes tiles    (\texttt{TTP\_\allowbreak Tile\_\allowbreak image\_\allowbreak size}), splits the image into batches (\texttt{TTP\_Image\_Tile\_Batch}) for parallel latent-space processing, and then reassembles them (\texttt{TTP\_Image\_Assy}), delivering a high-detail image while keeping memory usage in check.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=1\linewidth]{pics Prosomoiosi 4pages short paper/TTP.png}
+%     \caption{Nodes related to TTP functions are marked with red boxes}
+%     \label{fig:enter-label}
+% \end{figure}
+
+\paragraph{Output and Post-Production.}
+The 4K PNG sequence generated by the Flux pipeline is brought into After Effects at 24fps for grading, depth-of-field, and lighting (Lumetri Color, Camera Lens Blur). The graded master is output to DCI 4K (4096 × 2160, 24 fps, Rec. 709 Gamma 2.4) and polished in Topaz Video \footnote{https://www.topazlabs.com/} AI—Chronos 2-4× frame-rate.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{pics Prosomoiosi 4pages short paper/ComfyUI1.png}
+    \caption{Overview of comfyUI upscaling workflow}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Presentation format}
+%The piece is presented in two formats:
+%(1) A 4K DCP version (24/50 fps, REC.709, 5.1 surround sound) designed for theatrical or festival screenings;
+%(2) A gallery edition, looped from the same final master, projected in 4K with four-channel audio. Both formats maintain identical color grading and dynamic range, ensuring consistent presentation across black-box theaters and white-cube gallery settings.
+The work is presented as: (1) 4K DCP for theatrical screenings (24/50 fps, 5.1 surround); (2) looped 4K gallery projection with quadraphonic audio. Both maintain identical grading for consistent black-box/white-cube presentation.
+
+
+%-------------
+% 4. Conclusion
+%-------------
+
+\section{Discussion}
+
+
+% Second, the necessity—and future potential—of real-time image generation warrants closer scrutiny. Real-time pipelines push the act of “capture” into an ontological negotiation unfolding in the present: parameters, textual prompts and performer interventions co-evolve, exposing the algorithmic contingencies of every frame. Although such immediacy is limited by current hardware throughput and model latency, these very constraints constitute a visible grammar that can be critically mobilised. By contrast, non-real-time generation resembles the analogue darkroom: the temporal distance allows for meticulous post-production, compositing and authorial revision, yet simultaneously obscures the causal chain between algorithm and image. Both approaches offer legitimate creative affordances; the key, again, is to return to first principles and decide whether a work’s conceptual agenda is better served by the transparency and performativity of real-time synthesis or by the reflective plasticity of deferred rendering.
+% First, the potential of real-time image synthesis should be evaluated within a human–machine collaboration frame. As noted by Guljajeva et Al. (2024), every “automatic” frame still requires the artist to architect the pipeline, select and tune models, and make iterative aesthetic and ethical calls \cite{guljajeva_canet_sola_artist_2024}. AI is not a one-click oracle; it resembles developer fluid or pigment—only when the creator controls prompts, weights, and workflow does it speak a personal visual language. This perspective resonates with broader discussions of the technological agency in contemporary art \cite{Zylinska2017,Bishop2018}. Just as photographers rely on framing, metering, and dark-room work, real-time diffusion relies on human calibration of rhythm, light, and meaning. The parallels between traditional darkroom practice and algorithmic image generation have been explored extensively in recent media theory \cite{Cubitt2014,Ernst2016}. Therefore, before choosing the interactive real-time AI pipeline as discussed by Canet and Guljajeva (2024) \cite{canet2024visions} over offline generation, we must ask whether a project truly benefits from the transparency and improvisation of on-stage human AI performance, rather than assuming that the tool can replace authorship.
+First, real-time image synthesis should be evaluated within a human–machine collaboration frame. As Guljajeva et al. note, every "automatic" frame still requires the artist to architect the pipeline, select models, and make aesthetic decisions \cite{guljajeva_canet_sola_artist_2024}. AI resembles developer fluid or pigment—only when creators control prompts, weights, and workflow does it speak a personal visual language. Just as photographers rely on framing and darkroom work, real-time diffusion requires human calibration of rhythm, light, and meaning. Therefore, we must ask whether a project truly benefits from the transparency of on-stage human-AI performance, rather than assuming tools can replace authorship.
+
+% First, Elon Musk's insistence on "reasoning from first principles rather than by analogy"—i.e., reducing a problem to its most irreducible truths before rebuilding a solution \cite{Brier2014}—illuminates a blind spot in contemporary media art. Too often, artists choose a medium by analogy: video because predecessors used video, or AI because it is trending. Such analogical thinking risks misalignment between medium and concept, resulting in works whose technological veneer masks conceptual inertia. By contrast, a first-principles approach would begin with the core question of what a piece wishes to express and only then select (or invent) the medium whose operational logic best embodies that inquiry. Medium alignment, in this sense, is not an aesthetic luxury but a methodological necessity; if the foundational choice of medium is ill-considered, subsequent formal refinements become largely futile.
+Elon Musk’s first-principles dictum—strip a problem to its basics, then build up \cite{Brier2014}—shows what media art often gets wrong: choosing video or AI for fashion, then grafting on meaning. Start with the idea, then pick or invent the medium that enacts it; without that alignment, later polish is pointless.
+
+% The creative community has already begun releasing lightweight open-source toolkits for live diffusion, such as Vadim Epstein’s SDfu framework\footnote{\url{GitHub repository: https://github.com/eps696/SDfu}}. Epstein showcases the tool’s use in live performance and video production on his website\cite{epstein_wesual_2025} and in the experimental short film The Poem\cite{epstein_poem_2025}, reminding us that real-time synthesis is not only a technical issue but also a gateway to new viewing relations and modes of authorship.
+Lightweight open-source toolkits such as Vadim Epstein’s SDfu\footnote{\url{https://github.com/eps696/SDfu}} let artists shape real-time diffusion instead of merely triggering it. Epstein demonstrates this in live sets and in the short film The Poem \cite{epstein_wesual_2025,epstein_poem_2025}, showing that “one-click” AI is a myth: prompt design, parameter tuning, and aesthetic judgment remain firmly human tasks. Real-time synthesis thus becomes less a technical shortcut than a new stage for co-authoring perception and authorship.
+
+\section{Conclusion}
+This paper has argued that contemporary generative AI practice requires more than technical novelty; it demands a principled reconciliation between medium and concept. Building on first-principles reasoning, we reframed medium choice as foundational rather than cosmetic. The notion of medium alignment positions the operative logic of a medium—its algorithms, temporalities, and interfaces—as an integral layer of meaning production.
+Through the case study of Prosomoíosi (Simulation) we demonstrated how a TouchDesigner–StreamDiffusion pipeline can turn real-time image synthesis into both method and message. The work exposes algorithmic contingencies while inviting audiences to negotiate authorship during visual emergence. Our discussion showed that real-time and non-real-time pipelines offer distinct affordances, and that the critical task is to select the approach that most faithfully embodies a project's conceptual agenda.
+Medium alignment thus emerges as a transferable design heuristic for artists navigating an era where technical frameworks evolve faster than critical discourse. By treating real-time generativity as an instrument of conceptual clarity, future practices can move beyond tool-centred spectacle toward works that disclose, rather than disguise, the politics of their own making.
+
+%-------------
+% Biographies
+%-------------
+%\section*{Biographies}
+%\textbf{Liu Shuai} is a Chinese digital media artist based in Cologne and Beijing. He earned a BFA in Digital Media Art from Guangzhou Academy of Fine Arts and is currently pursuing an MFA at the Academy of Media Arts Cologne. Since 2024 he has served as a research fellow at the Digital Humanities Research Center of Renmin University of China and as an advisor to Jinan University's Centre for AI and New Media Art. Liu's practice spans algorithmic image making, interactive games, and network installations. His works have received the Goethe-Institut "AIsolation" AI Short-Film Award, the Jury Recommendation at the UK Lift-Off Network's "First Time" Filmmakers Session, Official Selection in the Experimental Section of the Beijing International Short Film Festival, the Gold Prize for Digital Imaging at the China University AI Art Season, the Art Experiment Prize at Poland's On Art Festival, and a Jury Special Mention at the Student World Impact Film Festival (USA). Earlier in his career he worked at the Guangdong Museum of Art and Guangdong Times Museum, gaining curatorial and institutional experience. In 2024 he co-founded the experimental game magazine LUDUS, which collaborates with the Academy of Media Arts Cologne and the University of Applied Arts Vienna to foster interdisciplinary exchange on AI art and game studies.
+
+%\textbf{Mar Canet Sola} is a Spanish media artist, designer, and researcher, best known as the co-founder of the artist duo Varvara \& Mar (est. 2009). He is currently a PhD candidate and research fellow in the CUDAN Research Group at the Baltic Film, Media and Arts School, Tallinn University. Canet holds an MSc in Interface Cultures from the University of Art and Design Linz, two degrees in art and design from ESDI Barcelona, and a BSc (Hons) in Computer Game Development from the University of Central Lancashire, UK. His practice investigates generative systems, artificial intelligence, and audience participation through kinetic, data-driven installations. Works created with Varvara Guljajeva have been shown internationally at venues including the Museum of Arts and Design (New York), FACT (Liverpool), Arts Santa Mònica (Barcelona), the Barbican Centre and the Victoria \& Albert Museum (London), Onassis Cultural Centre (Athens), the Ars Electronica Center (Linz), and ZKM | Karlsruhe. Their research has been published in proceedings of SIGGRAPH, SIGGRAPH Asia, IEEE VISAP, ACM TEI, EvoMUSART, ACM Creativity \& Cognition, ACM Multimedia, xCoAx, ISEA, among others.
+
+\section*{Code availability and demo}
+The complete ComfyUI–TouchDesigner workflow used in this case study is openly available on GitHub, allowing readers to reproduce and extend our results: \url{https://github.com/UninstallAll/MAAPIIcursor} (see the \texttt{workflow/} folder).
+%-------------
+% Acknowledgements
+%-------------
+
+
+\ifanonymous
+  \section*{Acknowledgements}
+  Acknowledgments have been removed for anonymous review and will be restored in the camera-ready version.
+\else
+    \section*{Acknowledgements}
+    The authors thank Shuree Sarantuya from Academy of Media Arts Cologne (KHM) for her invaluable assistance—particularly outstanding contributions to prompt design, text generation, and other production support—as well as the KHM for their technical support.
+\fi
+
+
+%--------------
+% References
+% Additional references for Kevin Abosch and Nora Al-Badri have been added to the .bib file
+% as well as supplementary citations for Zylinska2017, Bishop2018, Cubitt2014, Ernst2016
+%--------------
+
+\clearpage 
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references} 
+\end{document} 

@@ -1,0 +1,37 @@
+% 测试文件 - 验证全项目监视功能
+% 当你编辑并保存这个文件时，auto-watch-all.ps1 应该会检测到变更并编译Paper.tex
+
+\documentclass{article}
+
+\title{Test File for Project-Wide Monitoring}
+\author{Test Author}
+
+\begin{document}
+
+\maketitle
+
+\section{监视测试}
+
+这是一个测试文件。当你修改并保存这个文件时：
+
+\begin{itemize}
+\item auto-watch-all.ps1 应该检测到变更
+\item 显示 "检测到变更: test.tex"
+\item 然后编译主文件 Paper.tex
+\item 生成新的 Paper.pdf
+\end{itemize}
+
+\section{测试步骤}
+
+\begin{enumerate}
+\item 启动 \texttt{.\textbackslash auto-watch-all.ps1}
+\item 修改这个文件的任何内容
+\item 保存文件 (Ctrl+S)
+\item 观察终端输出
+\item 检查 Paper.pdf 是否更新
+\end{enumerate}
+
+% 修改这行文字来测试监视功能
+当前时间戳: \today
+
+\end{document} 

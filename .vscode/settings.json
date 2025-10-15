@@ -1,0 +1,77 @@
+{
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdfLaTeX -> BibTeX -> pdfLaTeX*2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "XeLaTeX",
+            "tools": [
+                "xelatex"
+            ]
+        }
+    ],
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.log",
+        "*.out",
+        "*.synctex.gz"
+    ],
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    
+    // 自动编译配置
+    "latex-workshop.latex.autoBuild.run": "onFileChange",
+    "latex-workshop.latex.autoBuild.delay": 10,
+    "latex-workshop.latex.watch.delay": 10,
+    "latex-workshop.latex.autoBuild.onSave.enabled": true,
+    "latex-workshop.latex.autoBuild.onTexChange.enabled": true,
+    
+    // 文件监视配置
+    "latex-workshop.latex.watch.files.ignore": [
+        "**/*.aux",
+        "**/*.bbl",
+        "**/*.blg",
+        "**/*.log",
+        "**/*.out",
+        "**/*.pdf",
+        "**/*.synctex.gz"
+    ],
+    
+    // 输出和错误处理
+    "latex-workshop.message.error.show": false,
+    "latex-workshop.message.warning.show": false,
+    "latex-workshop.showContextMenu": true,
+    
+    // PDF预览配置
+    "latex-workshop.view.pdf.zoom": "page-width",
+    "latex-workshop.view.pdf.scrollMode": 1,
+    "latex-workshop.view.pdf.spreadMode": 0
+} 

@@ -1,0 +1,91 @@
+%% Artism Dual-System Architecture
+flowchart LR
+    START[Artism Project]
+
+    %% External Input Sources
+    REALWORLD[Real World Events]
+    THEORY[Contemporary Art Theory]
+    USER_INPUT[User Input]
+
+    START --> SOURCES
+    REALWORLD --> SOURCES
+    THEORY --> SOURCES
+    USER_INPUT --> SOURCES
+
+    subgraph SOURCES [Data Collection Layer]
+        direction LR
+        CRAWLER[Web Crawling]
+        ARCHIVES[Art Archives]
+        CRAWLER --> DB_TEMP[Raw Data]
+        ARCHIVES --> DB_TEMP
+        DB_TEMP --> DB_PROCESS[Data Processing]
+    end
+
+    SOURCES --> DB["Shared Database<br/>Artist Info • Artwork Data<br/>Theory Texts • Historical Docs"]
+
+    subgraph MAIN_SYSTEMS [Dual AI Systems]
+        direction TB
+
+        subgraph AIDA_DETAIL ["AIDA: AI Artist Social Network"]
+            direction LR
+            A1[Historical Artist NPCs]
+            A2[Multi-Agent Interaction]
+            A3[Contemporary Artist NPCs]
+            A4[Virtual Artist NPCs]
+            A_USER[User Interface]
+            A5[Art History Simulation]
+            A6[Social Network Interface]
+            A1 --> A2
+            A3 --> A2
+            A4 --> A2
+            A_USER --> A2
+            A2 --> A5
+            A5 --> A6
+        end
+
+        subgraph ISMISM_DETAIL ["Ismism Machine: Critical Analysis"]
+            direction LR
+            I1[NLP Text Analysis]
+            I2[Concept Extraction]
+            I3[Conceptual Recombination]
+            I4[Pattern Recognition]
+            I5[Visual Generation]
+            I6[Critical Analysis Output]
+            I1 --> I2
+            I2 --> I3
+            I3 --> I4
+            I4 --> I5
+            I5 --> I6
+        end
+    end
+
+    DB --> AIDA_DETAIL
+    DB --> ISMISM_DETAIL
+    USER_INPUT --> A_USER
+
+    A6 --> OUT1[Generated Art History]
+    I6 --> OUT2[Critical Analysis Results]
+
+    OUT1 --> FEEDBACK[Dynamic Feedback Loop]
+    OUT2 --> FEEDBACK
+    FEEDBACK --> DB
+
+    %% Style Definitions - Academic Professional Theme with Clear Distinctions
+    classDef startNode fill:#ffffff,stroke:#1e3a8a,stroke-width:4px,color:#1e3a8a,font-weight:bold,font-size:16px
+    classDef inputNode fill:#e0f2fe,stroke:#0277bd,stroke-width:3px,color:#01579b,font-weight:bold,font-size:14px
+    classDef dataNode fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px,color:#1b5e20,font-weight:bold,font-size:14px
+    classDef systemNode fill:#fff3e0,stroke:#f57c00,stroke-width:4px,color:#e65100,font-weight:bold,font-size:16px
+    classDef processNode fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#4a148c,font-weight:bold,font-size:13px
+    classDef outputNode fill:#fff8e1,stroke:#f9a825,stroke-width:3px,color:#f57f17,font-weight:bold,font-size:14px
+    classDef feedbackNode fill:#ffebee,stroke:#d32f2f,stroke-width:3px,color:#b71c1c,font-weight:bold,font-size:14px
+    classDef tempNode fill:#fafafa,stroke:#616161,stroke-width:2px,color:#424242,font-weight:bold,font-size:12px
+
+    %% Apply Styles
+    class START startNode
+    class REALWORLD,THEORY,USER_INPUT inputNode
+    class SOURCES,DB dataNode
+    class MAIN_SYSTEMS,AIDA_DETAIL,ISMISM_DETAIL systemNode
+    class A1,A2,A3,A4,A_USER,A5,A6,I1,I2,I3,I4,I5,I6 processNode
+    class OUT1,OUT2 outputNode
+    class FEEDBACK feedbackNode
+    class CRAWLER,ARCHIVES,DB_TEMP,DB_PROCESS tempNode

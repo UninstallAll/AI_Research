@@ -1,0 +1,57 @@
+# 排除整个IJPP目录
+IJPP/
+
+# 大型软件安装包和压缩包
+*.exe
+*.zip
+*.rar
+*.7z
+
+# 视频文件(太大,不适合Git)
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+
+# 办公文档的临时文件
+~$*.doc*
+~$*.xls*
+~$*.ppt*
+
+# 备份文件
+*_backup.*
+backup/
+*_dec.mp4
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# 数据分析软件
+*.sav
+*.zsav
+*.nvp
+
+# LaTeX 临时文件
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.blg
+*.bbl
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Git备份
+.git_old_backup/
+

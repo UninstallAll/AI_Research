@@ -1,0 +1,133 @@
+\documentclass{article}
+
+% Chinese support for XeLaTeX
+\usepackage{xeCJK}
+\setCJKmainfont{Microsoft YaHei}  % 使用微软雅黑字体
+\setCJKsansfont{Microsoft YaHei}
+\setCJKmonofont{Microsoft YaHei}
+
+% Basic packages - compatible with XeLaTeX
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{amsfonts}
+\usepackage{natbib}
+
+% Page layout to approximate NeurIPS style
+\usepackage[letterpaper,margin=1in]{geometry}
+
+% Simple title and section formatting
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+
+\title{Artism: A Literature Review on Critical Research of Art Production in the AI Era}
+
+\author{
+\begin{tabular}{cc}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\textbf{Shuai Liu}$^*$ \\
+Academy of Media Arts Cologne, Germany \\
+\texttt{shuai.liu@khm.de}
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\textbf{Yiqing Tian}$^*$ \\
+Goldsmiths, University of London, UK \\
+\texttt{yukitian321@gmail.com}
+\end{minipage} \\[3em]
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\textbf{Yang Chen} \\
+King's College London, UK \\
+\texttt{dimpurrcheny@gmail.com} \\
+~
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\textbf{Mar Canet Sola}$^*$ \\
+BFM, Tallinn University, Estonia \\
+Academy of Media Arts Cologne, Germany \\
+\texttt{mar.canet@gmail.com}
+\end{minipage}
+\end{tabular} \\[0.5em]
+\footnotesize $^*$ Equal contribution
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+
+\textbf{Keywords:} Artificial Intelligence Art, Conceptual Collage, Art Production, Multi-Agent Systems, Digital Humanities
+\end{abstract}
+
+\section{Introduction}
+
+
+
+\section{Literature Review}
+\subsection{Contemporary Art's Conceptual Crisis}
+
+Contemporary art faces an ongoing conceptual crisis. Crisis has become normalized, which weakens its essential meaning, as it no longer marks decisive moments of transformation \cite{osborne2022crisis}. In this context, contemporary artists show clear \textbf{algorithmic patterns} in how they extract and reorganize cultural resources: they use established cultural symbols and theoretical frameworks as inputs, process them through personal methods, and produce works that appear different on the surface but share similar underlying structures. 
+
+Contemporary art must now simplify its form, content, and purpose, focusing primarily on accessibility and providing entertainment and visual impact \cite{rabb2024curators}. This represents the core of what we call \textbf{conceptual collage syndrome}\footnote{The term "conceptual collage syndrome" refers to the systematic recombination of existing cultural and theoretical elements without genuine conceptual innovation, resulting in works that maintain surface differentiation while lacking substantive originality.}.
+
+\subsection{AI Art and the Transformation of Aura}
+Artificial intelligence has made the reproducible nature of art production more evident. AI-generated art requires us to reconsider Walter Benjamin's concept of "aura" and challenges how we understand artistic authenticity and originality \cite{salasespasa2025aura}. When art is created with AI, audiences see it as more innovative but less authentic and less labor-intensive\footnote{This paradox highlights a fundamental tension in contemporary art reception: technological sophistication is simultaneously valued for its innovation and devalued for its perceived reduction of human agency.}. 
+
+This perception of reduced authenticity is the main reason why audiences often respond less favorably to AI-assisted art \cite{messer2024cocreating}. The ability of deep learning models to create novel images across various subjects and artistic styles reveals the limitations of the ethical, aesthetic, philosophical, and legal frameworks we use to define art \cite{cetinic2022understanding}.
+
+\subsection{Post-Digital Context and Technological Infrastructure}
+Florian Cramer's "post-digital" concept describes an approach to digital media that no longer pursues technological innovation, but instead treats digitalization as a reality to be reconfigured \cite{cramer2015post}. In this state, digital technology is no longer novel but becomes part of everyday infrastructure\footnote{This shift from digital-as-novelty to digital-as-infrastructure fundamentally alters how artists engage with technology, moving from demonstration of technological capability to critical examination of technological ubiquity.}. 
+
+The art world reflects current social and political conditions, especially as global conflicts continue \cite{rabb2024curators}. Artistic practices increasingly focus on technological failures, glitches, and errors, incorporating these elements into contemporary work and offering new ways to understand art's conceptual challenges.
+
+
+\section{Case Study}
+
+\subsection{AIDA: Multi-Agent Architecture for Parallel Art History Simulation}
+
+The AIDA (Artificial Intelligence Artists Database) project was conceptualized in 2019 and began to take concrete form in 2022 after being influenced by the Italian artist collective "Wu Ming" \cite{wu_ming_foundation_intro}. At that time, artificial intelligence technology had not yet become widespread, with deep learning primarily limited to specific domains such as image recognition and speech processing, natural language processing capabilities were relatively constrained, generative AI remained in experimental stages, and lacked mature multimodal interaction capabilities and large-scale language understanding technologies. The project concept was ahead of technological reality, but now, with the maturation of large language models (such as GPT-4.0, Gemini 2.0, DeepSeek V3), AI Agent development platforms (such as n8n, Coze, Dify), multimodal generation technologies, and the Model Context Protocol (MCP) \cite{mcp_overview_2025}, the project can be fully realized at the technical level.
+
+Rather than describing AIDA as a traditional database and virtual social network, it is more accurate to characterize it as an interactive art history representation and simulation system based on AI technology. Through multi-agent interactions between historical artist NPCs, contemporary artist NPCs, virtual artist NPCs, and real users, it constructs a self-driving parallel art history world.
+
+The system's technical implementation adopts a layered architectural design approach. At the data level, the project first establishes a comprehensive database containing information about both renowned and lesser-known artists, covering multi-dimensional materials including historical documents, artwork images, theoretical texts, and personal biographies. Each artist maintains an independent account system in the backend database, achieving flexible parameter adjustment and behavioral pattern configuration through open control interfaces. At the intelligent agent level, the system employs RAG (Retrieval-Augmented Generation) technology, assigning corresponding role characteristics and knowledge backgrounds to each Agent based on specific information from the database, ensuring that their dialogue content and creative concepts maintain consistency with the actual positions of historical or contemporary artists.
+
+The construction of historical artist NPCs is based on archival materials, personal writings, and stylistic analysis data of specific artists. Through training different large language models, the system can preserve the linguistic characteristics and discourse patterns found in historical documents while possessing the ability to generate new work concepts based on their aesthetic frameworks. Contemporary artist NPCs undergo learning training targeting the public creative outputs and theoretical positions of active artists, utilizing AI Agent development platforms to represent current artistic practices. Virtual prototype artists, as purely AI-generated aesthetic entities, create visual works through generative models and serve as experimental variables in art history evolution scenarios.
+
+The system is ultimately presented in the form of a social network webpage, providing users with an intuitive interactive interface. Users can engage in real-time dialogue with various AI Agents through natural language processing interfaces, observe viewpoint collisions between artists from different eras, and even participate in the formation process of virtual art movements. Leveraging the cross-media processing capabilities of multimodal large models, virtual artist Agents can simultaneously understand and generate image and text content, achieving perception and analysis of artworks. Random events from the real world are input into the system through API interfaces, serving as environmental parameters that influence the narrative evolution of the virtual world, ensuring that the simulation process maintains dynamic correlation with reality.
+
+\subsection{IsmismMachine: Computation-Driven Art Criticism Analysis System}
+
+The IsmismMachine employs natural language processing and machine learning technologies to conduct critical analysis of contemporary art practices in a systematized computational manner. The theoretical foundation of this system is rooted in Fredric Jameson's critique of postmodern "collage" phenomena. Jameson points out that the core characteristic of postmodern cultural production is the "uncritical appropriation" of past styles, where such collage lacks satirical intent and is essentially a form of "blank mockery" \cite{jameson1991postmodernism}. In the context of contemporary art, this phenomenon manifests as creators' "arbitrary" conceptual collage of existing theoretical frameworks and cultural symbols, establishing false conceptual "relationships" in the absence of historical distance.
+
+The system's technical implementation adopts a multi-level processing architecture. First, the system conducts deep natural language processing and semantic analysis of typical contemporary art theoretical literature, including "A Dictionary of Modern and Contemporary Art" \cite{chilvers_glaves_smith2009_dictionary}, "Brain Hole Party," "Concentrated Wisdom," and "Inflated Art" \cite{jiandan2025_pengzhang_yishu}, using NLP models to decompose texts into minimal semantic units of vocabulary and phrases, extracting core conceptual frameworks and discourse patterns.
+
+In the conceptual recombination phase, the system reconfigures extracted conceptual units through algorithmic permutation and combination methods. This process directly corresponds to and reveals the "conceptual collage syndrome" prevalent in contemporary art—many seemingly original theoretical constructions are actually nothing more than mechanical recombination operations of existing concepts. The system can exhaustively enumerate all possible conceptual combination methods and identify the inherent pattern characteristics of these combinations through deep learning classifiers. Subsequently, the system conducts multi-dimensional analysis, interpretation, and reconstruction processing of the obtained recombined concepts, calculating the "conceptual entropy" index for each combination to quantify its degree of randomness and predictability.
+
+In the visual output phase, the system employs advanced image and video generation models such as Flux and Wen 2.2 to transform the conceptual collage results derived from analysis into corresponding visual works, intuitively demonstrating the internal logic and aesthetic characteristics of these combinations. All generated data, analysis results, and visual content are systematically stored in databases and arranged chronologically, forming a dynamic critical analysis timeline that displays the evolutionary trajectory of contemporary art's conceptual collage phenomena.
+
+This phenomenon profoundly embodies the internal mechanism of art's aura dissipation in the age of mechanical reproduction—when the uniqueness of artworks is dissolved by technological means, the creative process itself becomes highly predictable and patterned \cite{benjamin1969work}. The popularization of generative AI technology further blurs the boundaries between originals and reproductions, allowing anyone to generate seemingly original but actually pattern-following content through AI tools. Through this computational critical analysis, the IsmismMachine systematically reveals that all conceptual collage operations follow predictable algorithmic patterns and fundamentally lack genuine conceptual innovation. As Manovich points out, AI technology is reshaping our aesthetic selection mechanisms and cultural production methods while providing unprecedented technical means for critical analysis of such patterned creation \cite{manovich2018ai}.
+
+The dual-system architecture of AIDA and IsmismMachine represents two different AI operational mechanisms: AIDA adopts an open generative model based on multi-agent collaboration, producing art historical narratives with emergent characteristics through complex interactions between historical artists and virtual artist Agents; while IsmismMachine constructs a structured analysis system based on learning algorithms, deconstructing and critiquing the conceptual collage logic of contemporary art through computational methods. This dual-system architecture addresses the widely discussed attention crisis phenomenon in contemporary art criticism: under the influence of digital media culture, both artists and audiences face persistent innovation pressure and attention dispersion dilemmas \cite{harman2018object}. Artists desperately seek so-called "breakthroughs" and "innovations," but this anxious state actually limits genuine experimental spirit and deep thinking.
+
+It is worth emphasizing that AI technology here serves not merely as an instrumental means, but becomes a fundamental condition for realizing the self-driving and real-time interconnection of this dual system. Without AI's deep learning and multi-agent collaboration capabilities, the AIDA system cannot generate dynamic art historical narratives with emergent characteristics, nor can the IsmismMachine conduct real-time pattern recognition and conceptual collage diagnosis. More critically, the complex data exchange, parameter adjustment, and feedback loop mechanisms between the two systems entirely depend on AI's real-time processing and adaptive learning capabilities. This technological dependency constitutes the necessary prerequisite for the entire critical ecosystem's operation, transforming traditional unidirectional criticism models into dynamic, self-evolving intelligent critical systems.
+
+
+\section{Discussion}
+
+
+\section{Conclusion}
+
+Traditional artistic conceptions regard technology as a neutral tool, but as revealed by Stiegler and Simondon, technology possesses its own evolutionary logic. In the "post-digital" era, "grey media" such as databases and algorithms profoundly influence cultural production, and artistic creation faces a crisis of homogenization.
+The core contribution of the "Artism" project lies in demonstrating that AI technology is a necessary condition for achieving critical art analysis. The dynamic interaction between the AIDA and IsmismMachine dual systems entirely depends on AI's deep learning, multi-agent collaboration, and real-time processing capabilities. Without AI technology, this self-driving critical loop mechanism would be impossible to realize.
+Through the AI-driven dual-system architecture, the project not only reveals the algorithmic characteristics of contemporary art's conceptual collage but, more importantly, redefines the meaning of artistic "originality." This exploration provides a new pathway for preserving art's critical space in the current context where technological logic is irreversible, demonstrating AI technology's unique potential in reactivating art's experimental spirit.
+
+\bibliographystyle{plain}
+\bibliography{../artism/references}
+
+\end{document} 

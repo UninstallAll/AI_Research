@@ -1,0 +1,168 @@
+% !TeX program = pdflatex
+
+% --- ANONYMIZATION SWITCH ---
+\newif\ifanonymousmode
+\anonymousmodefalse% << SET TO true FOR ANONYMOUS, false FOR NORMAL
+% \anonymousmodefalse
+
+\ifanonymousmode
+  \PassOptionsToClass{anonymous}{acmart} % Pass 'anonymous' option to acmart
+\fi
+
+\documentclass[sigconf]{acmart} % 'anonymous' is passed conditionally
+% --- END ANONYMIZATION SWITCH SETUP ---
+
+\settopmatter{printacmref=false}
+\renewcommand{\footnotetextcopyrightpermission}[1]{}
+\pagestyle{plain}
+
+\usepackage{hyperref}
+\usepackage{graphicx}
+%\usepackage{biblatex}
+\bibliographystyle{ACM-Reference-Format}
+
+%--------------------
+% Title & Author Info
+%--------------------
+\title{Prosomoíosi (Simulation)}
+
+% --- Author block remains as is. 'anonymous' option handles it. ---
+% The acmart 'anonymous' option will hide/replace this block
+% if \ifanonymousmode was set to true (and thus 'anonymous' was passed to \documentclass)
+\author{Shuai Liu}
+\affiliation{%
+  \institution{Academy of Media Arts Cologne (KHM)}
+  \city{Cologne}
+  \country{Germany}}
+\email{shuai.liu@khm.de}
+
+\author{Mar Canet Sola}
+\orcid{0000-0001-5986-3239}
+\affiliation{%
+  \institution{BFM, Tallinn University, Estonia}
+  \city{}
+  \country{}}
+\affiliation{%
+  \institution{Academy of Media Art Cologne(KHM), Germany}
+  \city{}
+  \country{}}
+\email{mar.canet@gmail.com}
+
+\ifanonymousmode
+  % \renewcommand{\shortauthors}{Anonymous Author(s)} % acmart 'anonymous' usually handles this
+\else
+  \renewcommand{\shortauthors}{Liu Shuai, Mar Canet Sola}
+\fi
+% --- End Author Block ---
+
+\begin{document}
+
+
+%--------------------
+% Abstract (required before \maketitle in acmart)
+%--------------------
+\begin{abstract}
+% 150–250 words. Briefly state background, core questions, methods/media (TouchDesigner, StreamDiffusion, Topaz, ComfyUI, Flux Image Model), visual/aural style, and intended socio-cultural or aesthetic reflection.
+"Prosomoíosi" (Simulation) is a real-time audiovisual study of how successive modeling frameworks overwrite cultural memory. Grounded in media archaeology, the work introduces 'medium alignment', arguing that concepts must be voiced through media that expose their operative logic. A live diffusion pipeline with multi-prompt editing stages the algorithmic politics of selective remembrance, inviting audiences to renegotiate authorship and selfhood at the human–machine frontier through contemplative engagement with the transparent algorithmic process."
+\end{abstract}
+
+
+\begin{CCSXML}
+% <placeholder for ACM CCSXML if needed>
+\end{CCSXML}
+
+% CCS CONCEPTS
+\ccsdesc[500]{Applied computing~Media arts}
+\ccsdesc[300]{Computing methodologies~Artificial intelligence}
+
+\keywords{AI video, simulation, comfyUI, media art, realtime generation}
+
+\begin{teaserfigure}
+    \centering
+    \includegraphics[width=1\linewidth]{screenshot2.jpg}
+    \caption{Screenshot of Prosomoíosi (Simulation)}
+    \label{fig:enter-label}
+\end{teaserfigure}
+
+\maketitle
+
+%--------------------
+% Full-width figure after authors
+%--------------------
+
+
+%--------------------
+% 3. Artwork Description
+%--------------------
+\section{ARTWORK DESCRIPTION}
+Prosomoíosi (Simulation) is a real-time audiovisual work that, from a media-archaeological perspective, introduces the concept of \emph{medium alignment} to interrogate how successive technical frameworks rewrite memory and identity. The project pursues two intertwined objectives: (1) to reveal, through a stratified narration of simulation logics, the ways in which each new medium silently overwrites cultural memory; and (2) to expose the algorithmic selectivity and symbolic power of AI image synthesis by staging a self-reflexive demonstration built on a TouchDesigner\footnote{\url{https://derivative.ca}}--StreamDiffusion\footnote{\url{https://github.com/cumulo-autumn/StreamDiffusion}} workflow with real-time multi-prompt editing and ComfyUI \footnote{\url{https://www.comfy.org}} up-scaling using the \textit{flux-dev f16} model. By allowing text prompts, parameter noise, and performer interventions to co-evolve on the exhibition floor, the work shifts image production from an act of depiction to one of ontological negotiation, inviting audiences to reconsider the future relationship between human creativity and machine simulation.
+\section{ABOUT THE ARTWORK}
+\subsection{PROJECT CONCEPT}
+% Describe the issues/themes explored and cite relevant theories.
+
+Simulation is not a simple act of copying or representation but a power-laden rewriting produced through the mutual operations of technology, archives, and algorithms. As Wolfgang Ernst shows, the temporality of the archive shapes memory while quietly editing the past \cite{Ernst_Archive}; Benjamin had already foreseen the aura's dissolution under mechanical reproduction \cite{Benjamin_WorkOfArt}, and Baudrillard later warned that simulacra are supplanting reality itself. Traversing a lineage "from clay to code," from sand tables and armillary spheres to deep learning and GANs, modeling technologies have been elevated from cognitive instruments to arbiters of truth: large networks such as GPT-4 and ESM-2 autonomously generate worlds from latent space and even discipline human decision-making, thereby transforming the human–reality relation. Within this landscape, games have become the most pervasive simulation medium; by breaching a "fourth wall," they situate players in a hybrid third space where procedural rhetoric allows symbolic capital and ideology to permeate interaction, building upon McLuhan's insight that "the medium is the message" \cite{McLuhan_UnderstandingMedia} and Bourdieu's theory of symbolic power \cite{Bourdieu_SymbolicPower}. Learning and governance simulations like SimCity and PeaceMaker and Lorenz-style chaotic systems further attest to simulation's deep shaping of behavior and cognition. Faced with the media mutations of an algorithmic society, art must practice medium alignment, expanding AI alignment into a perceptual–symbolic calibration at the level of the medium itself; drawing from Stiegler's concept of "third memory" \cite{Stiegler_TechnicsTime1} and Yuk Hui's "cosmic technics," \cite{Hui_Cosmotechnics} this critical posture responds to both the contingency and necessity of technology and aims to reconstruct a future of human–machine–medium symbiosis.
+
+
+
+\subsection{WORKFLOW}
+% Outline the concrete production pipeline.
+% 两张图片都加在这个地方
+This project adopts the following workflow: First, found footage, gameplay recordings, or theoretical videos serve as the generative foundation. Next, within TouchDesigner, the StreamDiffusion plugin node developed by dotsimulate is invoked to perform model-dependent transformations, producing an output frame rate that varies between 4 and 14 fps according to the selected model. Because this frame rate is lower than the standard 24 fps, the original footage is initially slowed down and the generated output is then proportionally re-accelerated, ensuring that the resulting material contains the same number of frames as the generated sequence. The generated video is subsequently exported frame by frame and fed into the Flux\footnote{\url{https://huggingface.co/black-forest-labs/FLUX.1-dev}} upscaling workflow in ComfyUI, where each frame undergoes high-definition enlargement. In post-production, AI tools such as Topaz for frame interpolation may be selectively considered.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{touchdesigner.png}
+    \caption{Using StreamDiffusion in TouchDesigner with animation curves}
+    \label{fig:enter-label}
+\end{figure}
+
+In the ComfyUI workflow, the image is first enlarged with the Siax~4$\times$ super-resolution model. The upscaled frame is then divided into tiles via the \texttt{TTP\_Tile\_image\_size} node (tile-size estimation), \texttt{TTP\_Image\_Tile\_Batch} (batch slicing), and \texttt{TTP\_Image\_Assy} (re-assembly)—a fragmentation process that embodies the work's critique of algorithmic reconstruction. Each tile is subsequently refined by the Flux model in four Euler sampling steps, demonstrating AI's "selective memory" that chooses which visual details to enhance or suppress, making the technical workflow itself a manifestation of "medium alignment."
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{comfyWorkingflow.png}
+    \caption{ComfyUI FLux Upscaling workflow after StreamDiffusion Pre-Generation}
+    \label{fig:enter-label}
+\end{figure}
+
+
+\subsection{PRESENTATION AND INTERACTION}
+% Final format (video, interactive web, installation, etc.), sound design, exhibition platform.
+The work is available in two display formats:  
+(1) A 4K DCP cinema version (24/50 fps, REC.709, 5.1 surround) for theatrical or festival screenings;  
+(2) A gallery version looped from the same finished file, projected in 4K with four-channel audio. Both versions retain identical colour and dynamic-range calibration, allowing seamless presentation in darkened cinema environments and minimalist gallery contexts.
+
+%--------------------
+% 4. Artists' Statement
+%--------------------
+\section{ARTIST STATEMENT}
+Media and technology evolve in tandem, and every slight misalignment between them opens fertile ground for experimentation. Artificial intelligence should be regarded as a historical–technical agent that reshapes the very conditions of aesthetic experience rather than a mere tool. Media archaeology shows that modeling frameworks—from ancient sand tables to latent-space diffusion networks—continuously establish new regimes of seeing and forgetting; hence the principle of “medium alignment,” which holds that ideas must be voiced through media whose operative logic remains visible rather than concealed. The author advances this stance along two paths: (1) pushing AI image generation toward higher resolution and real-time prompt editing, and (2) exposing the databases’ “selective memory” that decides which records endure. By confronting embodied intuition with statistical prediction, the argument calls for maintaining alignment between medium and idea in the generative era and for actively revealing the infrastructures that steer perception, thereby enabling responsible artistic practice.
+
+%--------------------
+% 5. About the Artist
+%--------------------
+% --- Example for "About the Artist" section ---
+\ifanonymousmode
+  % In anonymous mode, this section is omitted or replaced with a placeholder
+  \section{ABOUT THE ARTIST}
+  Information about the artists has been removed for anonymous review.
+  It will be included in the camera-ready version.
+\else
+  % In normal (authored) mode, show the section
+  \section{ABOUT THE ARTIST}
+  Liu Shuai is a Chinese digital media artist based in Cologne and Beijing. He earned a Bachelor of Fine Art in Digital Media Art from the Guangzhou Academy of Fine Arts and is currently pursuing an MFA at the Academy of Media Arts Cologne. Since 2024 he has served as a research fellow at the Digital Humanities Research Center of Renmin University of China and as an advisor to Jinan University's Centre for AI and New Media Art. Liu's practice spans algorithmic image making, interactive games, and network installations. His works have received the Goethe-Institut "AIsolation" AI Short-Film Award, the Jury Recommendation at the UK Lift-Off Network's "First Time" Filmmakers Session, Official Selection in the Experimental Section of the Beijing International Short Film Festival, the Gold Prize for Digital Imaging at the China University AI Art Season, the Art Experiment Prize at Poland's On Art Festival, and a Jury Special Mention at the Student World Impact Film Festival (USA). Earlier in his career, he worked at the Guangdong Museum of Art and Guangdong Times Museum, gaining curatorial and institutional experience. In 2024 he co-founded the experimental game magazine LUDUS, which collaborates with the Academy of Media Arts Cologne and the University of Applied Arts Vienna to foster interdisciplinary exchange on AI art and game studies.
+\fi
+
+% --- Example for "Acknowledgments" section ---
+\ifanonymousmode
+  \section*{ACKNOWLEDGMENTS}
+  Acknowledgments have been removed for anonymous review and will be restored in the camera-ready version.
+\else
+  \section*{ACKNOWLEDGMENTS}
+  The author thanks to media artist and mentor \href{https://shureesarantuya.com/}{Shuree Sarantuya} for her guidance, as well as the Academy of Media Arts Cologne for technical support.
+\fi
+
+\bibliography{references}
+
+\end{document}
